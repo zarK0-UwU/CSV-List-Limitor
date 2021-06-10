@@ -3,4 +3,4 @@ $/bin/bash
 clear
 echo "Running mailing list limitor"
 echo "================================================================"
-java -jar mailing\ list\ limitor.jar
+java -jar .\CSV-List-Limitor.jar
