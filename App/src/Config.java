@@ -1,13 +1,13 @@
 package App.src;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Config {
     int limit;
     Boolean constantFirstLine;
 
-    public Config(File cfg_file) throws FileNotFoundException {
+    public Config(File cfg_file) throws IOException {
         this(FileUtils.getString(cfg_file));
     }
 

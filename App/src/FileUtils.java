@@ -2,35 +2,40 @@ package App.src;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileUtils {
-    public static String getString(File file) throws FileNotFoundException {
-        String out = "";
-        Scanner reader = new Scanner(file);
+    public static String getString(File file) throws IOException {
+        String out;
         if (file.exists() && file.isFile()) {
-            while (reader.hasNextLine()) {
-
-                out += reader.nextLine() + "\n";
-
-            }
-            reader.close();
+            out = Files.readString(Path.of(file.getPath()));
             return out;
         } else {
-            reader.close();
+            out = "";
             return out;
         }
     }
 
-    public static String[] getLines(File file) throws FileNotFoundException {
+    public static String[] getLines(File file) throws IOException {
         String text = getString(file);
-        return text.split("\n");
+        String[] lines = text.split("\n");
+        return lines;
+        /* if (file.exists() && file.isFile()) {
+            ArrayList<String> linesList = (ArrayList<String>) Files.readAllLines(Path.of(file.getPath()));
+            String[] lines = linesList.;
+            return lines;
+        } else {
+            String[] lines = {};
+            return lines;
+        } */
     }
 
-    public static String[] divideBlocks(File file, Config cfg) throws FileNotFoundException {
+    public static String[] divideBlocks(File file, Config cfg) throws IOException {
         String[] lines = getLines(file);
         String out[] = new String[(lines.length / cfg.limit + ((lines.length % cfg.limit == 0) ? 0 : 1))];
         int blockStart = 1;
