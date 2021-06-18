@@ -6,8 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 
 public class FileUtils {
     public static String getString(File file) throws IOException {
@@ -38,7 +36,7 @@ public class FileUtils {
     public static String[] divideBlocks(File file, Config cfg) throws IOException {
         String[] lines = getLines(file);
         String out[] = new String[(lines.length / cfg.limit + ((lines.length % cfg.limit == 0) ? 0 : 1))];
-        int blockStart = 1;
+        int blockStart = 0;
         String firstline = lines[0];
         
         out[0] += firstline;
