@@ -37,6 +37,7 @@ public class FileUtils {
         String[] lines = getLines(file);
         String out[] = new String[(lines.length / cfg.limit + ((lines.length % cfg.limit == 0) ? 0 : 1))];
         int blockStart = 0;
+        //TODO: fix firstline, it gets two extra gost negative chars at beggining of it
         String firstline = lines[0];
         
         out[0] += firstline;
