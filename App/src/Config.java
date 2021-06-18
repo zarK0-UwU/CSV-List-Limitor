@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 
 public class Config {
     int limit;
+    Boolean constantFirstLine;
 
     public Config(File cfg_file) throws FileNotFoundException {
         this(FileUtils.getString(cfg_file));
@@ -21,6 +22,9 @@ public class Config {
             switch (settings[i][0]) {
                 case "limit":
                     this.limit = Integer.parseInt(settings[i][1]);
+                    break;
+                case "constant_first_line":
+                    this.constantFirstLine = settings[i][1].equals("true")?true:false;
                     break;
 
                 default:

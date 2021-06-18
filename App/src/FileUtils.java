@@ -30,16 +30,21 @@ public class FileUtils {
         return text.split("\n");
     }
 
-    public static String[] divideBlocks(File file, int limit) throws FileNotFoundException {
+    public static String[] divideBlocks(File file, Config cfg) throws FileNotFoundException {
         String[] lines = getLines(file);
-        String out[] = new String[(lines.length / limit + ((lines.length % limit == 0) ? 0 : 1))];
-        int blockStart = 0;
+        String out[] = new String[(lines.length / cfg.limit + ((lines.length % cfg.limit == 0) ? 0 : 1))];
+        int blockStart = 1;
+        String firstline = lines[0];
         
+        out[0] += firstline;
         for (int i = 0; i < out.length; i++) {
-            for (int j = blockStart; j < (limit + blockStart) && j < lines.length; j++) {
+            if (cfg.constantFirstLine && i > 0) {
+                out[i] += firstline;
+            }
+            for (int j = blockStart; j < (cfg.limit + blockStart) && j < lines.length; j++) {
                 out[i] += lines[j] + "\n";
             }
-            blockStart += limit;
+            blockStart += cfg.limit;
         }
         return out;
     }
