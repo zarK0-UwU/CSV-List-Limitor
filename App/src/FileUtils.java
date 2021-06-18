@@ -40,10 +40,9 @@ public class FileUtils {
         //TODO: fix firstline, it gets two extra gost negative chars at beggining of it
         String firstline = lines[0];
         
-        out[0] += firstline;
         for (int i = 0; i < out.length; i++) {
             if (cfg.constantFirstLine && i > 0) {
-                out[i] += firstline;
+                out[i] += firstline + "\n";
             }
             for (int j = blockStart; j < (cfg.limit + blockStart) && j < lines.length; j++) {
                 out[i] += lines[j] + "\n";
