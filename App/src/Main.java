@@ -1,7 +1,6 @@
 package App.src;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -19,7 +18,7 @@ public class Main {
                 File[] inputs = inputFolder.listFiles();
                 for (File file : inputs) {
                     if (FileUtils.hasMoreEntriesThan(file, cfg.limit)) {
-                        String block[] = FileUtils.divideBlocks(file, cfg.limit);
+                        String block[] = FileUtils.divideBlocks(file, cfg);
                         System.out.println("[DIVIDIDO] " + file.getName() + " " + FileUtils.getNumberOfLines(file) + " lineas");
                         for (int i = 0; i < block.length; i++) {
                             File output = new File(
