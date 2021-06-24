@@ -19,3 +19,7 @@ el numero a la derecha indica el maximo numero de entradas por archivo, eso sin 
   - Linux: ejecutar Run.sh
  
  > A tener en cuenta que es una herramienta de consola, la cual no pide entrada del usuario, obtiene directamente la configuracion necesaria directamente de settings.cfg
+
+##Problemas comunes:
+- La carpeta Output no existe
+- el archivo de configuración usa salto de linea crlf en vez de lf (this is considered a bug and will be fixed eventualy)
